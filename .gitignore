@@ -1,0 +1,4 @@
+.kube/
+*.key
+*.pem
+.env
