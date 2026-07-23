@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vote-scheduled
+  namespace: voting
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vote-scheduled
+  template:
+    metadata:
+      labels:
+        app: vote-scheduled
+    spec:
+      containers:
+        - name: vote
+          image: voting-vote:1.0
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 50
+              preference:
+                matchExpressions:
+                  - key: workload
+                    operator: In
+                    values: [web]
