@@ -23,7 +23,25 @@ spec:
             - name: REDIS_HOST
               value: redis
             - name: DB_HOST
-              value: postgres
+              valueFrom:
+                configMapKeyRef:
+                  name: voting-config
+                  key: DB_HOST
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: voting-config
+                  key: DB_NAME
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: voting-config
+                  key: DB_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
           resources:
             requests:
               cpu: 100m

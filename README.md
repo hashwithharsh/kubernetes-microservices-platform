@@ -24,7 +24,7 @@ This project deploys the Docker Example Voting App on Kubernetes. The applicatio
 
 ## Important project notes
 
-The original voting application has some fixed connection settings. In this Kubernetes project the internal PostgreSQL Service is named `db` and Redis is named `redis` so the sample worker and result code can resolve their existing connection names.
+I updated the sample application connection settings to use environment variables. Kubernetes provides the database host, database name, and user through the ConfigMap, while the PostgreSQL password is provided through the Secret. The internal PostgreSQL Service is named `db` and Redis is named `redis`.
 
 ## Before deploying
 
@@ -61,3 +61,7 @@ kubectl delete namespace voting
 ```
 
 The secret in this repository contains only a demo password. Never commit real credentials.
+
+## PostgreSQL note
+
+PostgreSQL is deployed as a single-replica StatefulSet with a PersistentVolumeClaim. This is for learning stable storage and StatefulSet behavior; it is not a highly available PostgreSQL cluster.

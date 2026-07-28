@@ -1,4 +1,5 @@
-var express = require('express'),
+var path = require('path'),
+    express = require('express'),
     async = require('async'),
     { Pool } = require('pg'),
     cookieParser = require('cookie-parser'),
@@ -17,8 +18,16 @@ io.on('connection', function (socket) {
   });
 });
 
+var dbHost = process.env.DB_HOST || 'db';
+var dbName = process.env.DB_NAME || 'postgres';
+var dbUser = process.env.DB_USER || 'postgres';
+var dbPassword = process.env.POSTGRES_PASSWORD || 'postgres';
+
 var pool = new Pool({
-  connectionString: 'postgres://postgres:postgres@db/postgres'
+  host: dbHost,
+  database: dbName,
+  user: dbUser,
+  password: dbPassword
 });
 
 async.retry(
