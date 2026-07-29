@@ -21,3 +21,4 @@ resources:
   - statefulsets/postgres.yaml
   - ingress/voting-ingress.yaml
   - autoscaling/vote-hpa.yaml
+# resource limits documented in resourceexplanations.md
