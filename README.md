@@ -1,4 +1,4 @@
-# Kubernetes Voting App
+# Kubernetes Voting App (with resource explanations)
 
 This project deploys the Docker Example Voting App on Kubernetes. The application source comes from the Docker Samples Example Voting App; my work here is focused on Kubernetes deployment, configuration, scheduling, resources, access control and troubleshooting.
 
